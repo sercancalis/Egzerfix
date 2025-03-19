@@ -52,7 +52,7 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
                             <Collapsible className="z-0" open={collapses.find(a => a.href === item.href)?.isOpen ?? false}>
                                 <CollapsibleTrigger onClick={() => toggleCollapse(item.href)} className={cn(
                                     "w-full flex rounded-md my-1",
-                                    isActive ? "bg-primary text-rose-500" : "transparent hover:bg-accent hover:text-accent-foreground",
+                                    isActive ? "bg-primary text-white" : "transparent hover:bg-accent hover:text-accent-foreground",
                                 )}>
                                     <div className="px-3 flex w-full items-center justify-between">
                                         <span
@@ -79,7 +79,7 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
                                                 <span
                                                     className={cn(
                                                         "group flex items-center rounded-md px-6 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-                                                        isSubItemActive ? "bg-primary text-rose-500" : "transparent",
+                                                        isSubItemActive ? "bg-primary text-white" : "transparent",
                                                     )}
                                                 >
                                                     <SubIcon className="mr-1 h-4 w-4" />
@@ -102,7 +102,7 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
                                 <span
                                     className={cn(
                                         "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-                                        isActive ? "bg-primary text-rose-500" : "transparent",
+                                        isActive ? "bg-primary text-white" : "transparent",
                                     )}
                                 >
                                     <Icon className="mr-1 h-4 w-4" />
