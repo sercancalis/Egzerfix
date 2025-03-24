@@ -146,3 +146,100 @@
 .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
   @apply bg-primary;
 }
+
+.ProseMirror {
+  background: transparent;
+}
+
+.tiptap.ProseMirror {
+  min-height: 5rem;
+}
+
+.ProseMirror>*+* {
+  margin-top: 0.75em;
+}
+
+.ProseMirror ul {
+  padding: 0 1rem;
+  list-style: disc !important;
+}
+
+.ProseMirror ol {
+  padding: 0 1rem;
+  list-style: decimal !important;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  line-height: 1.1;
+}
+
+.ProseMirror code {
+  background-color: #616161;
+  color: #616161;
+}
+
+.ProseMirror a {
+  color: #68cef8;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror pre {
+  background: #999999;
+  color: #fff;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.ProseMirror code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.ProseMirror blockquote {
+  padding-left: 0.5rem;
+  border-left: 2px solid #999999;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #999999;
+  margin: 2rem 0;
+}
+
+.ProseMirror h1 {
+  @apply text-2xl tracking-[-2px] font-bold;
+}
+
+.ProseMirror h2 {
+  @apply text-xl font-bold;
+}
+
+.ProseMirror h3 {
+  @apply text-lg font-bold;
+}
+
+.ProseMirror h4 {
+  @apply text-base font-semibold;
+}
+
+.image-uploading::before {
+  border-top-color: #1e986c;
+}
+
+.clearfix {
+  clear: both;
+}
