@@ -29,10 +29,9 @@ interface ToolbarType {
     form: any;
     name: string;
     disabled?: boolean;
-    isClickTemplate?: boolean;
 }
 
-export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) {
+export function Toolbar({ disabled, form, name }: ToolbarType) {
     const { editor }: { editor: Editor | null } = useCurrentEditor();
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -53,9 +52,9 @@ export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) 
 
     const getValues = form.getValues(name);
     useEffect(() => {
-        if (isClickTemplate)
+        if (getValues)
             editor.commands.setContent(getValues, false, { preserveWhitespace: "full" })
-    }, [isClickTemplate, editor, getValues])
+    }, [editor, getValues])
 
     const setLink = useCallback(() => {
         const previousUrl = editor.getAttributes('link').href

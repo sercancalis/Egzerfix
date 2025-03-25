@@ -4,7 +4,7 @@ import Underline from "@tiptap/extension-underline"
 import Link from '@tiptap/extension-link'
 import { EditorProvider } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import CharacterCount from "@tiptap/extension-character-count"
 import Image from "@tiptap/extension-image"
@@ -64,7 +64,7 @@ const Tiptap: React.FC<TiptapType> = (props) => {
     return (
         <div className={cn('border border-primary/40 p-1 rounded', props.disabled && "cursor-not-allowed")}>
             <EditorProvider
-                slotBefore={<Toolbar disabled={props.disabled} name={props.name} form={props.form} isClickTemplate={props.isClickTemplate} />}
+                slotBefore={<Toolbar disabled={props.disabled} name={props.name} form={props.form} />}
                 extensions={extensions}
                 content={props.content}
                 onUpdate={({ editor }) => {

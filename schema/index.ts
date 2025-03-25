@@ -80,3 +80,28 @@ export const SettingSchema = z.object({
         message: "*Lütfen anasayfa açıklaması giriniz",
     }),
 })
+
+export const CategorySchema = z.object({
+    id: z.number(),
+    name: z.string().min(1, {
+        message: "Lütfen kategori ismi giriniz"
+    }),
+    isActive: z.boolean()
+})
+
+export const BlogSchema = z.object({
+    id: z.number(),
+    categoryId: z.number().min(1, {
+        message: "Lütfen kategori seçiniz",
+    }),
+    title: z.string().min(1, {
+        message: "Lütfen blog başlığı giriniz"
+    }),
+    shortContent: z.string().min(1, {
+        message: "Lütfen blog başlığı giriniz"
+    }),
+    content: z.string().min(1, {
+        message: "Lütfen blog başlığı giriniz"
+    }),
+    isActive: z.boolean()
+})

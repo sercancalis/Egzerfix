@@ -15,6 +15,16 @@ export const navItems: NavItem[] = [
         icon: "dashboard",
     },
     {
+        title: "Kategoriler",
+        href: "/panel/categories",
+        icon: "settings",
+    },
+    {
+        title: "Bloglar",
+        href: "/panel/blogs",
+        icon: "settings",
+    },
+    {
         title: "Hakkımızda",
         href: "/panel/about",
         icon: "laptop",
