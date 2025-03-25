@@ -45,3 +45,35 @@ model Settings {
   name  String
   value String
 }
+
+model Abouts {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value String
+}
+
+model Categories {
+  id       Int     @id @default(autoincrement())
+  name     String
+  blogs    Blogs[]
+  isActive Boolean @default(true)
+}
+
+model Blogs {
+  id           Int        @id @default(autoincrement())
+  categoryId   Int
+  Category     Categories @relation(fields: [categoryId], references: [id])
+  title        String
+  shortContent String
+  content      String
+  createDate   DateTime   @default(now())
+  isActive     Boolean    @default(true)
+}
+
+model Contacts {
+  id      Int    @id @default(autoincrement())
+  name    String
+  mail    String
+  phone   String
+  message String
+}
