@@ -9,9 +9,7 @@ import { cn } from '@/lib/utils'
 import CharacterCount from "@tiptap/extension-character-count"
 import Image from "@tiptap/extension-image"
 import { Toolbar } from './Toolbar'
-import ImageResize from 'tiptap-extension-resize-image';
-import TextAlign from '@tiptap/extension-text-align'
-import ClearfixExtension from './ClearfixExtension'
+import { ResizableImage } from '@/helper/ResizableImage'
 
 interface TiptapType {
     form: any;
@@ -51,18 +49,16 @@ const Tiptap: React.FC<TiptapType> = (props) => {
                         default: 'none',
                         renderHTML: () => ({
                             style: 'float: left;',
-                            clear: 'both'
                         }),
                         parseHTML: (element) => element.style.float || 'none',
                     },
                 };
             },
         }),
-        ImageResize.configure({
-            inline: true,
-        }),
         Link,
-        ClearfixExtension,
+        ResizableImage.configure({
+            inline: true
+        }),
     ]
 
     return (
@@ -77,7 +73,6 @@ const Tiptap: React.FC<TiptapType> = (props) => {
                 parseOptions={{
                     preserveWhitespace: "full"
                 }}
-
             >
                 {""}
             </EditorProvider>

@@ -209,10 +209,10 @@
   border-left: 2px solid #999999;
 }
 
-.ProseMirror img {
+/* .ProseMirror img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 .ProseMirror hr {
   border: none;
