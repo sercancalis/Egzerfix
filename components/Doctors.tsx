@@ -5,40 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-const doctorList = [
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    },
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    },
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    },
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    },
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    },
-    {
-        image: "https://htmldemo.zcubethemes.com/decare/img/team/team01.png",
-        name: "Howard Holmes",
-        title: "Dentist"
-    }
-]
-const Doctors = () => {
-
+import prisma from '@/lib/prisma';
+const Doctors = async () => {
+    const doctors = await prisma.doctors.findMany();
     return (
         <section className='pb-12 pt-24'>
             <div className='container mx-auto'>
@@ -71,7 +40,7 @@ const Doctors = () => {
                             },
                         }}
                     >
-                        {doctorList.map((doctor: any, index: number) => {
+                        {doctors.map((doctor, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className='flex flex-col items-center justify-center border rounded-lg shadow p-6'>

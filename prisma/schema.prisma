@@ -19,3 +19,29 @@ model Services {
   description String
   icon        String
 }
+
+model Faqs {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String
+}
+
+model Comments {
+  id      Int    @id @default(autoincrement())
+  name    String
+  comment String
+  star    Int
+}
+
+model Doctors {
+  id    Int    @id @default(autoincrement())
+  name  String
+  image String
+  title String
+}
+
+model Settings {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value String
+}

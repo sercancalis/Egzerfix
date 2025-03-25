@@ -1,39 +1,25 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { StarIcon } from 'lucide-react';
-const dataList = [
-    {
-        star: 4,
-        comment: "“Morbi neque nisi, tincidunt nec erat vitae, viverra porttitor lorem. Fusce tempor nunc at luctus blandit. Donec eget fermentum magna.we dedicate financial on services the teams serve all Curabitur ac tortor ante. Sed quis dignissim”",
-        name: "Margie Dose",
-    },
-    {
-        star: 5,
-        comment: "“Morbi neque nisi, tincidunt nec erat vitae, viverra porttitor lorem. Fusce tempor nunc at luctus blandit. Donec eget fermentum magna.we dedicate financial on services the teams serve all Curabitur ac tortor ante. Sed quis dignissim”",
-        name: "Margie Dose",
-    },
-    {
-        star: 5,
-        comment: "“Morbi neque nisi, tincidunt nec erat vitae, viverra porttitor lorem. Fusce tempor nunc at luctus blandit. Donec eget fermentum magna.we dedicate financial on services the teams serve all Curabitur ac tortor ante. Sed quis dignissim”",
-        name: "Margie Dose",
-    },
-    {
-        star: 5,
-        comment: "“Morbi neque nisi, tincidunt nec erat vitae, viverra porttitor lorem. Fusce tempor nunc at luctus blandit. Donec eget fermentum magna.we dedicate financial on services the teams serve all Curabitur ac tortor ante. Sed quis dignissim”",
-        name: "Margie Dose",
-    },
-    {
-        star: 5,
-        comment: "“Morbi neque nisi, tincidunt nec erat vitae, viverra porttitor lorem. Fusce tempor nunc at luctus blandit. Donec eget fermentum magna.we dedicate financial on services the teams serve all Curabitur ac tortor ante. Sed quis dignissim”",
-        name: "Margie Dose",
-    },
-]
-
+import { Comments } from '@prisma/client';
+import axios from 'axios';
 const Testimonial = () => {
+    const [dataList, setDataList] = useState<Comments[]>([]);
+    useEffect(() => {
+        const getDataList = async () => {
+            var res = await axios.get("/api/comments");
+            if (res && res.status == 200) {
+                setDataList(res.data.data);
+            }
+        }
+
+        getDataList();
+    }, [])
+
     return (
         <section className='py-12'>
             <div className='container mx-auto'>
@@ -66,7 +52,7 @@ const Testimonial = () => {
                             },
                         }}
                     >
-                        {dataList.map((data: any, index: number) => {
+                        {dataList.map((data, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className='flex flex-col border rounded-lg shadow p-4 gap-2'>
@@ -88,7 +74,7 @@ const Testimonial = () => {
                                             </div>
                                         </div>
 
-                                        <p className='font-extrabold text-base text-gray-500'>{data.comment}</p>
+                                        <p className='font-extrabold text-base text-gray-500 min-h-32'>{data.comment}</p>
 
                                     </div>
                                 </SwiperSlide>

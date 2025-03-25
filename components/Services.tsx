@@ -1,34 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
+import prisma from "@/lib/prisma";
+import { ServiceCard } from "./ServiceCard";
 
-const services = [
-    { title: "Root Canal", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Alignment Teeth", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Cosmetic Teeth", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Oral Hygiene", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Live Advisory", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Cavity Inspection", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-];
-
-const Services = () => {
-
-    const ServiceCard = ({ service }: any) => {
-        const IconComponent = lazy(() =>
-            //@ts-ignore
-            import("lucide-react").then((mod) => ({ default: mod[service.icon] }))
-        );
-
-        return (
-            <div className="flex items-center py-4 px-8 border rounded-lg shadow-md bg-white min-h-40">
-                <Suspense fallback={<div className="w-16 h-16 bg-gray-200 rounded-full"></div>}>
-                    <IconComponent className="w-12 h-12 text-blue-500 mr-4" />
-                </Suspense>
-                <div>
-                    <h3 className="text-2xl font-extrabold">{service.title}</h3>
-                    <p className="text-sm text-gray-500">{service.desc}</p>
-                </div>
-            </div>
-        );
-    }
+const ServicesComp = async () => {
+    const services = await prisma.services.findMany();
 
     return (
         <section className='py-24'>
@@ -41,7 +16,7 @@ const Services = () => {
                         {/* Sol hizmet listesi */}
                         <div className="flex flex-col gap-4">
                             {services.slice(0, 3).map((service, index) => (
-                                <ServiceCard key={index} service={service} />
+                                <ServiceCard key={index} data={service} />
                             ))}
                         </div>
 
@@ -55,7 +30,7 @@ const Services = () => {
                         {/* Sağ hizmet listesi */}
                         <div className="flex flex-col gap-4">
                             {services.slice(3, 6).map((service, index) => (
-                                <ServiceCard key={index} service={service} />
+                                <ServiceCard key={index} data={service} />
                             ))}
                         </div>
                     </div>
@@ -65,4 +40,4 @@ const Services = () => {
     )
 }
 
-export default Services
+export default ServicesComp

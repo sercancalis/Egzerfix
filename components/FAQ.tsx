@@ -1,28 +1,24 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { ChevronDown, ChevronLeft } from 'lucide-react'
+import { Faqs } from '@prisma/client'
+import axios from 'axios'
 
-const faqList = [
-    {
-        question: "Vivamus rhoncus ante a ipsum imperdiet ?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
-    },
-    {
-        question: "Vivamus rhoncus ante a ipsum imperdiet ?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
-    },
-    {
-        question: "Vivamus rhoncus ante a ipsum imperdiet ?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
-    },
-    {
-        question: "Vivamus rhoncus ante a ipsum imperdiet ?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
-    }
-]
 const FAQ = () => {
     const [openIndex, setOpenedIndex] = useState<number | null>(0);
+    const [faqList, setFaqList] = useState<Faqs[]>([]);
+    useEffect(() => {
+        const getFaqList = async () => {
+            var res = await axios.get("/api/faqs");
+            if (res && res.status == 200) {
+                setFaqList(res.data.data);
+            }
+        }
+
+        getFaqList();
+    }, [])
+
     return (
         <section className='py-12 bg-primary relative min-h-[80vh]'>
             <div className='container mx-auto'>

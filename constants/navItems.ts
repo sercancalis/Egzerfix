@@ -19,7 +19,31 @@ export const navItems: NavItem[] = [
         href: "/panel/about",
         icon: "laptop",
     },
-
+    {
+        title: "Hizmetlerimiz",
+        href: "/panel/services",
+        icon: "laptop",
+    },
+    {
+        title: "Sıkça Sorulan Sorular",
+        href: "/panel/faqs",
+        icon: "laptop",
+    },
+    {
+        title: "Yorumlar",
+        href: "/panel/comments",
+        icon: "laptop",
+    },
+    {
+        title: "Doktorlar",
+        href: "/panel/doctors",
+        icon: "laptop",
+    },
+    {
+        title: "Ayarlar",
+        href: "/panel/settings",
+        icon: "settings",
+    },
     {
         title: "Siteye Dön",
         href: "/",

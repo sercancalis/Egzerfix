@@ -3,31 +3,25 @@ import Logo from './Logo'
 import { ClockIcon, MailIcon, MapPinCheckInside, PhoneIcon } from 'lucide-react'
 import Nav from './Nav'
 import Link from 'next/link';
+import prisma from '@/lib/prisma';
 
-const services = [
-    { title: "Root Canal", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Alignment Teeth", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Cosmetic Teeth", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Oral Hygiene", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Live Advisory", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-    { title: "Cavity Inspection", desc: "Aenean eleifend turpis tellus, nec laoreet metus elementum ac.", icon: "Mail" },
-];
-
-const Footer = () => {
+const Footer = async () => {
+    const services = await prisma.services.findMany();
+    const settings = await prisma.settings.findMany();
+    console.log(123, settings.find(x => x.name == "workingHours")?.value ?? "");
     return (
         <footer className='bg-primary pt-12'>
             <div className='container mx-auto'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
                     <div className='flex flex-col gap-6'>
                         <Logo isLogoWhite />
-                        <p className='text-white font-light'>Mauris non nisi semper, lacinia neque in, dapibus leo. Curabitur sagittis libero tincidunt tempor finibus. Mauris at dignissim ligula, nec tristique orci.Quisque vitae metus.</p>
+                        <p className='text-white font-light'>{settings.find(x => x.name == "logoDescription")?.value ?? ""}</p>
                         <div className='flex items-center gap-6'>
                             <div className='bg-gradient-to-br from-[#0997E6] to-[#3561D9] p-4 rounded-full'>
                                 <ClockIcon color='white' />
                             </div>
                             <div className='flex flex-col'>
-                                <p className='text-white font-light'>Pazartesi - Pazar</p>
-                                <p className='text-white font-light'>09:00 - 21:00</p>
+                                <p className='text-white font-light' dangerouslySetInnerHTML={{ __html: settings.find(x => x.name == "workingHours")?.value ?? "" }} />
                             </div>
                         </div>
                     </div>
@@ -55,19 +49,19 @@ const Footer = () => {
                             <div className='bg-gradient-to-br from-[#0997E6] to-[#3561D9] p-4 rounded-full'>
                                 <MapPinCheckInside color='white' />
                             </div>
-                            <p className='text-white font-light'>Çamlık, Muhsin Yazıcıoğlu Cd. No:62 Daire:4, 34000 Çekmeköy/İstanbul</p>
+                            <p className='text-white font-light'>{settings.find(x => x.name == "address")?.value ?? ""}</p>
                         </div>
                         <div className='flex items-center gap-6'>
                             <div className='bg-gradient-to-br from-[#0997E6] to-[#3561D9] p-4 rounded-full'>
                                 <PhoneIcon color='white' />
                             </div>
-                            <p className='text-white font-light'>+91-7052-101-786</p>
+                            <p className='text-white font-light'>{settings.find(x => x.name == "phone")?.value ?? ""}</p>
                         </div>
                         <div className='flex items-center gap-6'>
                             <div className='bg-gradient-to-br from-[#0997E6] to-[#3561D9] p-4 rounded-full'>
                                 <MailIcon color='white' />
                             </div>
-                            <p className='text-white font-light'>info@example.com</p>
+                            <p className='text-white font-light'>{settings.find(x => x.name == "mail")?.value ?? ""}</p>
                         </div>
                     </div>
                 </div>
