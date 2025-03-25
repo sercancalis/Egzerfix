@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 
 export const ServiceCard = ({ data }: { data: Services }) => {
     const IconComponent = lazy(() =>
-        //@ts-ignore
+        //@ts-expect-error: Dynamically loading icons from 'lucide-react' based on 'data.icon', and TypeScript cannot infer the type of the icon property.
         import("lucide-react").then((mod) => ({ default: mod[data.icon] }))
     );
 

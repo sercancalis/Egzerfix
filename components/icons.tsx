@@ -34,7 +34,6 @@ import {
     ListCollapse,
     ListPlusIcon,
     Timer,
-    ListOrdered,
     ListOrderedIcon,
     CalendarPlusIcon,
     HomeIcon

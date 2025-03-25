@@ -1,7 +1,6 @@
 "use client"
 import AppFormFileInput from '@/components/AppFormFileInput';
 import { AppFormInput } from '@/components/AppFormInput';
-import AppFormStarRating from '@/components/AppFormStarRating';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
@@ -10,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react'
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const SaveDoctors = () => {
@@ -31,7 +30,7 @@ const SaveDoctors = () => {
 
     useEffect(() => {
         const getData = async (id: string) => {
-            var res = await axios.get(`/api/doctors?id=${id}`)
+            const res = await axios.get(`/api/doctors?id=${id}`)
             if (res && res.status == 200) {
                 form.setValue("id", res.data.data.id);
                 form.setValue("name", res.data.data.name);
@@ -42,10 +41,10 @@ const SaveDoctors = () => {
         if (id) {
             getData(id);
         }
-    }, [id]);
+    }, [id, form]);
 
     const onSubmit = async (values: z.infer<typeof DoctorSchema>) => {
-        var res = await axios.post("/api/doctors", values);
+        const res = await axios.post("/api/doctors", values);
         if (res) {
             toast({
                 description: "İşleminiz başarıyla kaydedilmiştir",
@@ -58,10 +57,7 @@ const SaveDoctors = () => {
                 variant: "destructive"
             })
         }
-
     }
-
-    const imageUrl = useWatch({ control: form.control, name: "image" });
 
     return (
         <div className='container mx-auto'>

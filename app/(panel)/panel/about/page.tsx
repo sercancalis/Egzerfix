@@ -8,8 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { useForm } from 'react-hook-form';
 
-const page = () => {
-
+const PanelAboutPage = () => {
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -19,7 +18,7 @@ const page = () => {
     })
 
     function onSubmit(values: z.infer<typeof LoginSchema>) {
-
+        console.log(values);
     }
 
     return (
@@ -39,4 +38,4 @@ const page = () => {
     )
 }
 
-export default page
+export default PanelAboutPage

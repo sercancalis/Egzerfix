@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { cn } from '@/lib/utils';
 import { ChevronDown, ChevronUp } from "lucide-react"

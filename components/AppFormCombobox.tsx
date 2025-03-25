@@ -76,7 +76,7 @@ export const AppFormCombobox: React.FC<AppFormComboboxType> = (props) => {
                                 <CommandList>
                                     <CommandEmpty>Data Not Found</CommandEmpty>
                                     <CommandGroup>
-                                        {props.data.map((x, index) => (
+                                        {props.data.map((x) => (
                                             <CommandItem
                                                 value={x.label}
                                                 key={x.value}

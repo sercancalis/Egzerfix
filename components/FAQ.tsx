@@ -10,7 +10,7 @@ const FAQ = () => {
     const [faqList, setFaqList] = useState<Faqs[]>([]);
     useEffect(() => {
         const getFaqList = async () => {
-            var res = await axios.get("/api/faqs");
+            const res = await axios.get("/api/faqs");
             if (res && res.status == 200) {
                 setFaqList(res.data.data);
             }

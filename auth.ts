@@ -21,9 +21,9 @@ export const {
                 if (typeof credentials !== "undefined") {
                     try {
                         if (credentials.username === adminUserName && credentials.password === adminPassword) {
-                            var newModel: User = {
+                            const newModel: User = {
                                 id: "1",
-                                name: "BesaAdmin",
+                                name: adminUserName,
                             }
                             return newModel;
                         }

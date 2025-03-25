@@ -1,6 +1,5 @@
 "use client"
 import { AppFormInput } from '@/components/AppFormInput';
-import { AppFormTiptap } from '@/components/AppFormTiptap';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
@@ -32,7 +31,7 @@ const SaveServices = () => {
 
     useEffect(() => {
         const getData = async (id: string) => {
-            var res = await axios.get(`/api/services?id=${id}`)
+            const res = await axios.get(`/api/services?id=${id}`)
             if (res && res.status == 200) {
                 form.setValue("id", res.data.data.id);
                 form.setValue("icon", res.data.data.icon);
@@ -43,10 +42,10 @@ const SaveServices = () => {
         if (id) {
             getData(id);
         }
-    }, [id]);
+    }, [id, form]);
 
     const onSubmit = async (values: z.infer<typeof ServiceSchema>) => {
-        var res = await axios.post("/api/services", values);
+        const res = await axios.post("/api/services", values);
         if (res) {
             toast({
                 description: "İşleminiz başarıyla kaydedilmiştir",

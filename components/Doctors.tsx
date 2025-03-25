@@ -1,13 +1,23 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-import prisma from '@/lib/prisma';
-const Doctors = async () => {
-    const doctors = await prisma.doctors.findMany();
+import axios from 'axios';
+import { Doctors } from '@prisma/client';
+const DoctorsComp = () => {
+    const [doctors, setDoctors] = useState<Doctors[]>([]);
+    useEffect(() => {
+        const getDoctors = async () => {
+            const res = await axios.get("/api/doctors");
+            if (res && res.status == 200) {
+                setDoctors(res.data.data);
+            }
+        }
+        getDoctors();
+    }, [])
     return (
         <section className='pb-12 pt-24'>
             <div className='container mx-auto'>
@@ -58,4 +68,4 @@ const Doctors = async () => {
     )
 }
 
-export default Doctors
+export default DoctorsComp

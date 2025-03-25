@@ -30,7 +30,7 @@ const SaveComment = () => {
 
     useEffect(() => {
         const getData = async (id: string) => {
-            var res = await axios.get(`/api/comments?id=${id}`)
+            const res = await axios.get(`/api/comments?id=${id}`)
             if (res && res.status == 200) {
                 form.setValue("id", res.data.data.id);
                 form.setValue("name", res.data.data.name);
@@ -41,10 +41,10 @@ const SaveComment = () => {
         if (id) {
             getData(id);
         }
-    }, [id]);
+    }, [id, form]);
 
     const onSubmit = async (values: z.infer<typeof CommentSchema>) => {
-        var res = await axios.post("/api/comments", values);
+        const res = await axios.post("/api/comments", values);
         if (res) {
             toast({
                 description: "İşleminiz başarıyla kaydedilmiştir",

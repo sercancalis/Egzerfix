@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import axios from "axios";
+import Image from "next/image";
 
 interface FileInputProps {
     form: any;
@@ -55,7 +56,7 @@ const AppFormFileInput: React.FC<FileInputProps> = ({ form, name, label }) => {
                                 Resim Seç
                             </button>
                             {field.value && (
-                                <img src={field.value} alt="Yüklenen Resim" className="w-16 h-16 rounded" />
+                                <Image src={field.value} alt="Yüklenen Resim" className="w-16 h-16 rounded" height={64} width={64} />
                             )}
                         </div>
                     </FormControl>

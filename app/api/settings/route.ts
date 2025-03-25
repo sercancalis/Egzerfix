@@ -7,7 +7,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-    var body: { [key: string]: string } = await req.json();
+    const body: { [key: string]: string } = await req.json();
     for (const [name, value] of Object.entries(body)) {
         await updateOrCreateOtherSetting(name, value);
     }

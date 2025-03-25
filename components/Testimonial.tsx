@@ -11,7 +11,7 @@ const Testimonial = () => {
     const [dataList, setDataList] = useState<Comments[]>([]);
     useEffect(() => {
         const getDataList = async () => {
-            var res = await axios.get("/api/comments");
+            const res = await axios.get("/api/comments");
             if (res && res.status == 200) {
                 setDataList(res.data.data);
             }

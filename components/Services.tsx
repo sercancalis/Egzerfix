@@ -1,6 +1,7 @@
 import React from "react";
 import prisma from "@/lib/prisma";
 import { ServiceCard } from "./ServiceCard";
+import Image from "next/image";
 
 const ServicesComp = async () => {
     const services = await prisma.services.findMany();
@@ -21,10 +22,13 @@ const ServicesComp = async () => {
                         </div>
 
                         {/* XL ekranlarda gösterilecek diş görseli */}
-                        <img
+                        <Image
                             src="https://htmldemo.zcubethemes.com/decare/img/features/services-img-details2.png"
                             alt="Dental"
+                            width={500}
+                            height={400}
                             className="w-80 md:w-96 hidden xl:block"
+                            priority
                         />
 
                         {/* Sağ hizmet listesi */}

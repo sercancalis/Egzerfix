@@ -14,7 +14,7 @@ const ServicesPage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            var res = await axios.get("/api/services");
+            const res = await axios.get("/api/services");
             if (res && res.status == 200) {
                 setData(res.data.data);
             }
@@ -24,8 +24,7 @@ const ServicesPage = () => {
 
     const deleteAction = async (id: number) => {
         try {
-
-            var res = await axios.delete(`/api/services?id=${id}`);
+            const res = await axios.delete(`/api/services?id=${id}`);
             if (res && res.status == 200) {
                 setData((prevData) => prevData.filter((item) => item.id !== id));
                 toast({

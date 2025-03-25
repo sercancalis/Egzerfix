@@ -14,7 +14,7 @@ const FaqsPage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            var res = await axios.get("/api/faqs");
+            const res = await axios.get("/api/faqs");
             if (res && res.status == 200) {
                 setData(res.data.data);
             }
@@ -24,8 +24,7 @@ const FaqsPage = () => {
 
     const deleteAction = async (id: number) => {
         try {
-
-            var res = await axios.delete(`/api/faqs?id=${id}`);
+            const res = await axios.delete(`/api/faqs?id=${id}`);
             if (res && res.status == 200) {
                 setData((prevData) => prevData.filter((item) => item.id !== id));
                 toast({

@@ -7,7 +7,6 @@ import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NavItem } from "@/constants/navItems";
-import AppCollapsible from "../AppCollapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 import { ChevronDown } from "lucide-react"
 
@@ -26,12 +25,12 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
     const [collapses, setCollapses] = useState<CollapseType[]>([]);
 
     useEffect(() => {
-        const updatedCollapses: CollapseType[] = items.map((item, index) => ({
+        const updatedCollapses: CollapseType[] = items.map((item) => ({
             isOpen: item.subNavItem?.some(x => x.href === basedPath) ?? false,
             href: item.href,
         }));
         setCollapses(updatedCollapses);
-    }, []);
+    }, [basedPath, items]);
 
     const toggleCollapse = (href: string) => {
         setCollapses((prevCollapses: CollapseType[]) =>
@@ -44,7 +43,7 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
     return (
         <nav className="grid items-start gap-1">
             {items.map((item, index) => {
-                var isActive = basedPath === item.href || (collapses.find(a => a.href === item.href)?.isOpen ?? false)
+                const isActive = basedPath === item.href || (collapses.find(a => a.href === item.href)?.isOpen ?? false)
                 const Icon = Icons[item.icon];
                 return (
                     <div key={index}>
@@ -69,7 +68,7 @@ export function DashboardNav({ items, setOpen }: DashboardNavProps) {
                                 </CollapsibleTrigger>
                                 <CollapsibleContent className="flex flex-col gap-1 z-0">
                                     {item.subNavItem.map((navItem, ind) => {
-                                        var isSubItemActive = basedPath === navItem.href;
+                                        const isSubItemActive = basedPath === navItem.href;
                                         const SubIcon = Icons[navItem.icon];
                                         return (
                                             <Link

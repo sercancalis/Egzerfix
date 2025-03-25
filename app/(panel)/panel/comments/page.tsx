@@ -14,7 +14,7 @@ const CommentsPage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            var res = await axios.get("/api/comments");
+            const res = await axios.get("/api/comments");
             if (res && res.status == 200) {
                 setData(res.data.data);
             }
@@ -24,8 +24,7 @@ const CommentsPage = () => {
 
     const deleteAction = async (id: number) => {
         try {
-
-            var res = await axios.delete(`/api/comments?id=${id}`);
+            const res = await axios.delete(`/api/comments?id=${id}`);
             if (res && res.status == 200) {
                 setData((prevData) => prevData.filter((item) => item.id !== id));
                 toast({

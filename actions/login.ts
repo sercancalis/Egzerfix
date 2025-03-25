@@ -19,6 +19,8 @@ export const loginAction = async (values: z.infer<typeof LoginSchema>) => {
             password,
             redirectTo: "/panel"
         })
+
+        return { success: "Başarılı" };
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {

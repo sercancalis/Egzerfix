@@ -1,5 +1,5 @@
 import Cta from '@/components/Cta'
-import Doctors from '@/components/Doctors'
+import DoctorsComp from '@/components/Doctors'
 import FAQ from '@/components/FAQ'
 import React from 'react'
 
@@ -13,7 +13,7 @@ const AboutPage = () => {
                 </div>
             </div>
             <Cta />
-            <Doctors />
+            <DoctorsComp />
             <FAQ />
         </section>
     )

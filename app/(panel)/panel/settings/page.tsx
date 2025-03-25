@@ -11,6 +11,8 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { SettingSchema } from '@/schema';
 import { useRouter } from 'next/navigation';
+import { Settings } from '@prisma/client';
+
 const SettingsPage = () => {
   const { toast } = useToast();
   const router = useRouter();
@@ -26,21 +28,24 @@ const SettingsPage = () => {
     },
   })
 
+  type AllowedNames = "address" | "phone" | "mail" | "whatsapp" | "instagram" | "facebook" | "youtube" | "workingHours" | "logoDescription" | "homePageDescription";
+
   useEffect(() => {
-    var getSettings = async () => {
-      var res = await axios.get("/api/settings");
+    const getSettings = async () => {
+      const res = await axios.get("/api/settings");
       if (res.status === 200) {
-        res.data.data.forEach((item: any) => {
-          form.setValue(item.name, item.value ?? "-");
+        const settings: Settings[] = res.data.data;
+        settings.forEach((item) => {
+          form.setValue(item.name as AllowedNames, item.value);
         });
       }
     }
 
     getSettings();
-  }, [])
+  }, [form])
 
   const onSubmit = async (values: z.infer<typeof SettingSchema>) => {
-    var model = {
+    const model = {
       phone: values.phone,
       mail: values.mail,
       address: values.address,
@@ -52,7 +57,7 @@ const SettingsPage = () => {
       facebook: values.facebook,
       youtube: values.youtube,
     }
-    var res = await axios.post("/api/settings", model);
+    const res = await axios.post("/api/settings", model);
     if (res && res.status == 200) {
       toast({
         description: "İşleminiz başarıyla kaydedilmiştir",

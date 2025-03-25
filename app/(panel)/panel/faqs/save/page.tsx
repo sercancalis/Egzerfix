@@ -28,7 +28,7 @@ const SaveFaq = () => {
 
     useEffect(() => {
         const getData = async (id: string) => {
-            var res = await axios.get(`/api/faqs?id=${id}`)
+            const res = await axios.get(`/api/faqs?id=${id}`)
             if (res && res.status == 200) {
                 form.setValue("id", res.data.data.id);
                 form.setValue("question", res.data.data.question);
@@ -38,10 +38,10 @@ const SaveFaq = () => {
         if (id) {
             getData(id);
         }
-    }, [id]);
+    }, [id, form]);
 
     const onSubmit = async (values: z.infer<typeof FaqSchema>) => {
-        var res = await axios.post("/api/faqs", values);
+        const res = await axios.post("/api/faqs", values);
         if (res) {
             toast({
                 description: "İşleminiz başarıyla kaydedilmiştir",

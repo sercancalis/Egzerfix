@@ -1,6 +1,5 @@
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import Logo from "../Logo";
 import { MobileSidebar } from "./MobileSidebar";
 import { UserNav } from "./UserNav";

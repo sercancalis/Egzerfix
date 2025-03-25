@@ -1,6 +1,6 @@
 "use client"
 
-import { useCurrentEditor } from "@tiptap/react"
+import { Editor, useCurrentEditor } from "@tiptap/react"
 import {
     Bold,
     Strikethrough,
@@ -18,7 +18,7 @@ import {
     Code,
     Link,
     Unlink,
-    Image
+    ImageIcon
 } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
 import { cn } from "@/lib/utils"
@@ -33,13 +33,12 @@ interface ToolbarType {
 }
 
 export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) {
-    const { editor } = useCurrentEditor()
+    const { editor }: { editor: Editor | null } = useCurrentEditor();
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     if (!editor) {
         return null
     }
-
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         editor?.setOptions({
@@ -50,13 +49,13 @@ export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) 
                 }
             }
         })
-    }, [disabled])
+    }, [editor, disabled])
 
     const getValues = form.getValues(name);
     useEffect(() => {
         if (isClickTemplate)
             editor.commands.setContent(getValues, false, { preserveWhitespace: "full" })
-    }, [isClickTemplate])
+    }, [isClickTemplate, editor, getValues])
 
     const setLink = useCallback(() => {
         const previousUrl = editor.getAttributes('link').href
@@ -77,7 +76,7 @@ export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) 
             .run()
     }, [editor])
 
-    const uploadImage = (file: any) => {
+    const uploadImage = (file: File) => {
         const formData = new FormData();
         formData.append("file", file);
         return axios.post('/api/upload', formData)
@@ -288,13 +287,13 @@ export function Toolbar({ disabled, form, name, isClickTemplate }: ToolbarType) 
                 onPressedChange={handleFileSelect}
                 disabled={disabled}
             >
-                <Image className="h-3 w-3" />
+                <ImageIcon className="h-3 w-3" />
             </Toggle>
 
             <div className="p-1 border rounded-md items-center">
                 <input
                     type="color"
-                    //@ts-ignore
+                    //@ts-expect-error
                     onInput={event => editor.chain().focus().setColor(event.target.value).run()}
                     value={editor.getAttributes('textStyle').color}
                     data-testid="setColor"

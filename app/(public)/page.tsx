@@ -1,5 +1,5 @@
 import Cta from "@/components/Cta";
-import Doctors from "@/components/Doctors";
+import DoctorsComp from "@/components/Doctors";
 import FAQ from "@/components/FAQ";
 import Hero from "@/components/Hero";
 import MainAbout from "@/components/MainAbout";
@@ -14,7 +14,7 @@ export default function Home() {
       <MainAbout />
       <Testimonial />
       <FAQ />
-      <Doctors />
+      <DoctorsComp />
       <Cta />
     </main>
   );

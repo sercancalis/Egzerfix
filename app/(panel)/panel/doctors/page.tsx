@@ -4,6 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Doctors } from '@prisma/client';
 import axios from 'axios';
 import { EditIcon, TrashIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
@@ -13,7 +14,7 @@ const DoctorsPage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            var res = await axios.get("/api/doctors");
+            const res = await axios.get("/api/doctors");
             if (res && res.status == 200) {
                 setData(res.data.data);
             }
@@ -23,8 +24,7 @@ const DoctorsPage = () => {
 
     const deleteAction = async (id: number) => {
         try {
-
-            var res = await axios.delete(`/api/doctors?id=${id}`);
+            const res = await axios.delete(`/api/doctors?id=${id}`);
             if (res && res.status == 200) {
                 setData((prevData) => prevData.filter((item) => item.id !== id));
                 toast({
@@ -59,7 +59,7 @@ const DoctorsPage = () => {
                     {data?.map((item, index) => (
                         <div className='mb-4 flex gap-4' key={index}>
                             <div className='w-full flex gap-4'>
-                                <img src={item.image} alt="Yüklenen Resim" className="w-32 h-32 rounded" />
+                                <Image src={item.image} alt="Yüklenen Resim" className="w-32 h-32 rounded" width={150} height={150} />
                                 <div className='flex flex-col justify-center items-center'>
                                     <p className='font-bold'>{item.name}</p>
                                     <p className='text-gray-500'>{item.title}</p>
