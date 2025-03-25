@@ -8,7 +8,6 @@ import prisma from '@/lib/prisma';
 const Footer = async () => {
     const services = await prisma.services.findMany();
     const settings = await prisma.settings.findMany();
-    console.log(123, settings.find(x => x.name == "workingHours")?.value ?? "");
     return (
         <footer className='bg-primary pt-12'>
             <div className='container mx-auto'>

@@ -72,7 +72,6 @@ const Tiptap: React.FC<TiptapType> = (props) => {
                 extensions={extensions}
                 content={props.content}
                 onUpdate={({ editor }) => {
-                    console.log(editor.getHTML());
                     props.onChange(editor.getHTML())
                 }}
                 parseOptions={{
