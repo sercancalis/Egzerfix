@@ -105,3 +105,15 @@ export const BlogSchema = z.object({
     }),
     isActive: z.boolean()
 })
+
+export const AboutSchema = z.object({
+    title: z.string().min(1, {
+        message: "*Lütfen başlık giriniz",
+    }),
+    shortAbout: z.string().min(1, {
+        message: "*Lütfen kısa hakkımızda giriniz",
+    }),
+    about: z.string().min(1, {
+        message: "*Lütfen hakkımızda giriniz",
+    }),
+})
